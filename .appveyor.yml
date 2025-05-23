@@ -20,5 +20,8 @@ skip_commits:
 
   message: /\(doc\).*/
 
-on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+environment:
+  APPVEYOR_SSH_KEY: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCrR1Ky2Ggu8jxSMF8cA3/f1QhNjXl7HtZYOfU7vwF/aKI1YlS9o0L6qRBL0JCzqc4I2zTb/FnN3dDcUZeyDax7JMtunveB2kqlA/zi3efKPOCbSyDcftsihop6T2nFoFgY6ZHKoMXXERl3E8j+tcY1fbmQEUvL/j4EyxDRMsarRQ== root@428929c84f30
+
+init:
+  - sh: curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
